@@ -22,7 +22,7 @@ while True:
             continue 
         break 
     except ValueError: 
-        print("\033[31mОшибка! Введите число больше 0.\033[0m")
+        print("\033[31mОшибка! Введите целое число больше 0.\033[0m")
 print(f"Все целые степени двойки (т.е. числа вида 2^k), не превосходящие числа {value} :") 
 search = 1
 while search <= value:
@@ -40,7 +40,7 @@ while True:
             continue 
         break 
     except ValueError: 
-        print("\033[31mОшибка! Введите число больше 0.\033[0m") 
+        print("\033[31mОшибка! Введите целое число больше 0.\033[0m") 
 # список с кодами ANSI-цветов для чередования 
 colors = ["\033[31m", "\033[32m", "\033[33m", "\033[34m"] 
 # итерируемся по степеням двойки от 0 до log2(num) 
@@ -53,5 +53,5 @@ for k in range(num.bit_length()):
         # определяем, какой цвет использовать для текущего значения 
         colIn = k % len(colors) 
         # выводим значение с соответствующим цветом и запятой или точкой 
-        com = "," if power <= (num - power) else "." 
+        com = "," if power <= (num - power) else "."
         print(f"{colors[colIn]}{power}\033[0m{com} ", end=" ")
