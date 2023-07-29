@@ -12,8 +12,8 @@
 10000  -> 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,
 '''
 
-# Вариант 1:
-print("\nВариант 1")
+# Вариант итоговый 1:
+print("\nВариант итоговый 1")
 while True: 
     try: 
         value = int(input("\033[1m\033[35mВведите положительное число больше 0 : \033[0m")) 
@@ -23,12 +23,14 @@ while True:
         break 
     except ValueError: 
         print("\033[31mОшибка! Введите целое число больше 0.\033[0m")
-print(f"Все целые степени двойки (т.е. числа вида 2^k), не превосходящие числа {value} :") 
-search = 1
+print(f"Все целые степени двойки (т.е. числа вида 2^k), не превосходящие числа {value} :")
+pow = 0 
+search = 2**pow
 while search <= value:
     com = "," if search <= (value - search) else ".\n"    
     print(f"{search}{com}", end=" ")
-    search = search * 2
+    pow += 1 
+    search = 2 ** pow
 
 # Вариант 2:
 print("\nВариант 2")
@@ -55,3 +57,29 @@ for k in range(num.bit_length()):
         # выводим значение с соответствующим цветом и запятой или точкой 
         com = "," if power <= (num - power) else "."
         print(f"{colors[colIn]}{power}\033[0m{com} ", end=" ")
+
+# Вариант 3:
+print("\nВариант 3")
+
+while True: 
+    try: 
+        set = float(input("\033[32mВведите положительное число \033[1mне менее\033[0m\033[35m 0,00001 : \033[0m")) 
+        if set < 0.00001: 
+            print("\033[31mОшибка! Значение должно быть \033[1mболeе\033[0m\033[35m 0,00001.\033[0m") 
+            continue 
+        break 
+    except ValueError: 
+        print("\033[31mОшибка! Введите число.\033[0m")
+degre = -16
+num = 2 ** degre
+if num <= set:
+    print("\033[47m\033[36m\033[1mВсе целые степени двойки, от значения {} до числа {} :\033[0m".format("0,00001", set))
+    while num <= set:
+        if num < 1:        
+            print("\033[47m\033[35m{:13.6f}  [ 2 в степени {:3.0f} ]   \033[0m".format(num, degre))
+        else:
+            print("\033[47m\033[36m{:13.0f}  [ 2 в степени {:3.0f} ]   \033[0m".format(num, degre))
+        degre += 1
+        num = 2 ** degre
+else:
+    print(f"\033[47m\033[33m\033[1mВ диапазоне от 0,00001 отсутствуют степени двойки, не превосходящие числа {set}.\033[0m")
